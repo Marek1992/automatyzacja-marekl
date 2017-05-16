@@ -24,15 +24,32 @@ namespace Zadanie4
         {
             double x1 = 0;
             double x2 = 0;
+            double delta = (b * b) -(4 * a * c);
 
-            // napisz obliczanie rozwiązań (miejsc zerowych) funkcji kwadratowej 
-            // jeśli nie pamiętasz jak to się liczy to tutaj jest ściąga
-            // http://matma.prv.pl/kwadratowa.php
-            // postaraj się napisac to samodzielnie a nie googlując implementację
-            // powodzenia :)
-            
-            Console.WriteLine(x1);
-            Console.WriteLine(x2);
+            if (delta > 0)
+
+            {
+
+                x1 = -b + Math.Sqrt(delta) / (2 * a);
+                x2 = -b - Math.Sqrt(delta) / (2 * a);
+
+                Console.WriteLine("x1 =" + x1 + "x2 =" + x2);
+            }
+
+            else if (delta == 0)
+
+            {
+                x1 = -b / (2 * a);
+
+                Console.WriteLine("x1 =" + x1);
+            }
+
+            else
+
+                Console.WriteLine("Delta jest mniejsza od zera. Brak miejsc zerowych");
+
+            Console.ReadKey();
+
         }
     }
 }
