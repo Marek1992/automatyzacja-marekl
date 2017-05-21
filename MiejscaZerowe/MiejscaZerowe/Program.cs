@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace MiejscaZerowe
 {
@@ -6,6 +7,8 @@ namespace MiejscaZerowe
     {
         public static void Main(string[] args)
         {
+           
+
             if (args.Length == 0)
             {
                 Console.Write("Podaj wartość współczynnika: a = ");
@@ -29,8 +32,106 @@ namespace MiejscaZerowe
 
         public static string Calculate(string[] args)
         {
+
+            // ilość współczynników
+
+            int liczbaWspoczynnikow = args.Length;
+            if (liczbaWspoczynnikow == 3)
+            {
+                double a = Double.Parse(args[0], CultureInfo.InvariantCulture.NumberFormat);
+                double b = Double.Parse(args[1], CultureInfo.InvariantCulture.NumberFormat);
+                double c = Double.Parse(args[2], CultureInfo.InvariantCulture.NumberFormat);
+                double x1, x2;
+                if (a == 0 & b!=0 & c!=0)
+                {
+                    x1 = -c/ b;
+                    return "Jedno miejsce zerowe: x0 = " + x1;
+
+                }
+                else if(a != 0 & b == 0 & c != 0)
+                {
+                    double delta =- (4 * a * c);
+                    x1 = (- Math.Sqrt(delta)) / (2 * a);
+                    x2 = (Math.Sqrt(delta)) / (2 * a);
+                   
+                    return "Dwa miejsca zerowe: x1 = " + Math.Round(x1, 2) + ", x2 = " + Math.Round(x2, 2);
+
+                }
+                else if(a != 0 & b != 0 & c == 0)
+                {
+                    x1 = (-b -b ) / (2 * a);
+                    x2 = (-b + b) / (2 * a);
+
+                    return "Dwa miejsca zerowe: x1 = " + Math.Round(x1, 2) + ", x2 = " + Math.Round(x2, 2);
+                }
+                else if(a == 0 & b == 0 & c != 0)
+                  {
+                    return "Brak miejsc zerowych.";
+                }
+                else if (a == 0 & b == 0 & c == 0)
+                {
+                    return "Nieskończenie wiele miejsc zerowych.";
+                }
+                else if (a == 0 & b != 0 & c == 0)
+                {
+                    return "Jedno miejsce zerowe: x0 = 0";
+                }
+                else { 
+                    double delta = (b * b) - (4 * a * c);
+
+                if (delta > 0)
+
+                {
+
+                    x1 = (-b - Math.Sqrt(delta)) / (2 * a);
+                    x2 = (-b + Math.Sqrt(delta)) / (2 * a);
+
+                    return "Dwa miejsca zerowe: x1 = " + x1 + ", x2 = " + x2;
+                }
+
+                else if (delta == 0)
+
+                {
+                    x1 = -b / (2 * a);
+
+                    return "Jedno miejsce zerowe: x0 = " + x1;
+                }
+
+                else
+
+                    return "Brak miejsc zerowych.";
+
+            }
+        }
+            else
+            {
+                if(liczbaWspoczynnikow == 0)
+                {
+                    return "Nie podano żadnych współczynników.";
+                }
+                else if(liczbaWspoczynnikow == 1)
+                {
+                    return "Podano 1 zamiast 3 współczynników.";
+                }
+                else if(liczbaWspoczynnikow == 2)
+                {
+                    return "Podano 2 zamiast 3 współczynników.";
+                }
+                else if(liczbaWspoczynnikow > 3)
+                {
+                    return "Podano więcej niż 3 współczynniki.";
+                }
+            }
+            // wykluczenie liter ze wspolczynnikow
+
+            // poprawny format wprowadzonych danych
+
+            // calculate
             throw new NotImplementedException();
 
+            // metoda oblicz()
+            //
+            //
             // Napisz implementację metody 'Calculate' obliczającej miejsca zerowe funkcji kwadratowej
             // o podanych współczynnikach a, b oraz c.
             //

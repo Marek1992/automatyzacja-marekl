@@ -207,7 +207,7 @@ namespace MiejscaZerowe
             [TestMethod]
             public void UlamkoweMiejscaZerowe()
             {
-                a = "-1.08";
+                a = "-1.08"; //round
                 b = "77.25";
                 c = "-11.5";
                 string OczekiwanyWynik = "Dwa miejsca zerowe: x1 = 71.38, x2 = 0.15";
@@ -220,7 +220,7 @@ namespace MiejscaZerowe
             [TestMethod]
             public void UlamkoweWspolczynnikiFunkcji()
             {
-                a = "-1.15";
+                a = "-1.15"; // round
                 b = "-3.35";
                 c = "99.7";
                 string OczekiwanyWynik = "Dwa miejsca zerowe: x1 = 7.97, x2 = -10.88";
