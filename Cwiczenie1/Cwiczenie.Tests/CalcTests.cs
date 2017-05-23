@@ -11,6 +11,8 @@ namespace Cwiczenie.Tests
 {
     public class CalcTests
     {
+
+
         private Calc _calculator;
 
         public CalcTests()
@@ -18,11 +20,14 @@ namespace Cwiczenie.Tests
             _calculator = new Calc(10, 5);
         }
 
-        [Fact]
-        public void Dodawanie_Zwraca_Sume_Dwoch_Liczb()
+        [Theory]
+        [InlineData(1, 1, 2)]
+        [InlineData(9000, 9000, 18000)]
+        public void Dodawanie_Zwraca_Sume_Dwoch_Liczb(int x, int y, int expeted)
         {
-           
-           _calculator.Add();
+            var _calculator = new Calc(x, y);
+
+            _calculator.Add();
 
             Assert.Equal(15, 15);
         }
@@ -40,12 +45,16 @@ namespace Cwiczenie.Tests
 
             Assert.Equal(50, 50);
         }
-        [Fact]
-        public void Dzielenie_Zwraca_Wynik_Dzielenia_Dwoch_Liczb()
-        {
-             _calculator.Divide();
 
-            Assert.Equal(2, 2);
+        [Theory]
+        [InlineData(1, 0, 0)]
+        public void Dzielenie_Zwraca_Wynik_Dzielenia_Dwoch_Liczb(int x, int y, double expeted)
+        {
+            var _calculator = new Calc(x, y);
+
+            var result = _calculator.Divide();
+
+            Assert.Equal(0, result);
         }
     }
 }
