@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cwiczenie1
 {
-    public class Zadanie1
+    public class Calc
     {
         int liczbaPierwsza;
         int liczbaDruga;
 
-        public Zadanie1(int a, int b)
+        public Calc(int a, int b)
         {
             liczbaPierwsza = a;
             liczbaDruga = b;
