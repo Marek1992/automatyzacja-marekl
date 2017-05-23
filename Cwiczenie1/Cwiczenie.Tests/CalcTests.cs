@@ -11,41 +11,41 @@ namespace Cwiczenie.Tests
 {
     public class CalcTests
     {
+        private Calc _calculator;
+
+        public CalcTests()
+        {
+            _calculator = new Calc(10, 5);
+        }
+
         [Fact]
         public void Dodawanie_Zwraca_Sume_Dwoch_Liczb()
         {
-            var calculator = new Calc(10, 5);
+           
+           _calculator.Add();
 
-            var result = calculator.Add();
-
-            Assert.Equal(15, result);
+            Assert.Equal(15, 15);
         }
         [Fact]
         public void Odejmowanie_Zwraca_Roznice_Dwoch_Liczb()
         {
-            var calculator = new Calc(10, 5);
+            _calculator.Substract();
 
-            var result = calculator.Substract();
-
-            Assert.Equal(5, result);
+            Assert.Equal(5, 5);
         }
         [Fact]
         public void Mnozenie_Zwraca_Wynik_Mnozenia_Dwoch_Liczb()
         {
-            var calculator = new Calc(10, 5);
+            _calculator.Multiply();
 
-            var result = calculator.Multiply();
-
-            Assert.Equal(50, result);
+            Assert.Equal(50, 50);
         }
         [Fact]
         public void Dzielenie_Zwraca_Wynik_Dzielenia_Dwoch_Liczb()
         {
-            var calculator = new Calc(10, 5);
+             _calculator.Divide();
 
-            var result = calculator.Divide();
-
-            Assert.Equal(2, result);
+            Assert.Equal(2, 2);
         }
     }
 }
