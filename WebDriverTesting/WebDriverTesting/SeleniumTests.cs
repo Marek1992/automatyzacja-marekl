@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,10 @@ namespace WebDriverTesting
         [Fact]
         public void FixMe()
         {
-            Assert.Equal(true, false);
+            _driver.Navigate().GoToUrl("https://autotestdotnet.wordpress.com/");
+            IWebElement result = _driver.FindElementByClassName("post-title");
+            var firstNoteTitle = result.FindElement(By.TagName("a")).Text;
+            Assert.Equal("Vivamus aliquam feugiat", firstNoteTitle);
         }
         public void Dispose()
         {
