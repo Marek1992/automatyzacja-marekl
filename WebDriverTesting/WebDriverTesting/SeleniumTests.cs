@@ -7,9 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
-
-
-
+using OpenQA.Selenium.Support.UI;
 
 namespace WebDriverTesting
 {
@@ -21,6 +19,16 @@ namespace WebDriverTesting
             _driver.Manage()
                 .Timeouts()
                 .ImplicitWait = TimeSpan.FromSeconds(5);
+        }
+        protected void WaitForIWebElementPresent(IWebElement by, int seconds)
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(seconds));
+            wait.Until(ExpectedConditions.ElementToBeClickable(by));
+        }
+        protected void WaitForElementPresent(By by, int seconds)
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(seconds));
+            wait.Until(ExpectedConditions.ElementToBeClickable(by));
         }
         [Fact]
         public void FixMe()
@@ -40,52 +48,46 @@ namespace WebDriverTesting
             _driver.Navigate().GoToUrl("https://autotestdotnet.wordpress.com/wp-admin/");
             var login = _driver.FindElementById("user_login");
             login.Clear();
-            Thread.Sleep(1000);
+            WaitForIWebElementPresent(login, 5);
             login.SendKeys("autotestdotnet@gmail.com");
 
             var password = _driver.FindElementById("user_pass");
             password.Clear();
-            Thread.Sleep(1000);
+            WaitForIWebElementPresent(password, 5);
             password.SendKeys("codesprinters2016");
 
             _driver.FindElementById("wp-submit").Click();
-            Thread.Sleep(1000);
-
             _driver.FindElementById("menu-posts").Click();
-            Thread.Sleep(1000);
+            
 
             var newPost = _driver.FindElementByClassName("page-title-action");
-            Thread.Sleep(1000);
             newPost.Click();
-
-            Thread.Sleep(1000);
-
+            
             var newUniqueName =  Guid.NewGuid().ToString();
             var titlePost = _driver.FindElementByName("post_title");
             titlePost.SendKeys(newUniqueName);
-            Thread.Sleep(1000);
+            
 
             var postText = _driver.FindElementByName("content");
             postText.SendKeys("NowyPostMarek");
-            Thread.Sleep(1000);
+            
 
             var publish = _driver.FindElementByName("publish");
             publish.Click();
-            Thread.Sleep(1000);
+
+            var publishUrl = _driver.FindElementByCssSelector("#sample-permalink > a").GetAttribute("href");
+
 
             var avatar = _driver.FindElementByCssSelector(".avatar.avatar-32");
             avatar.Click();
-            Thread.Sleep(1000);
+            WaitForIWebElementPresent(avatar, 5);
 
             var signOut = _driver.FindElementByClassName("ab-sign-out");
-            Thread.Sleep(1000);
             signOut.Click();
-            Thread.Sleep(1000);
 
-            _driver.Navigate().GoToUrl("https://autotestdotnet.wordpress.com/");
+            _driver.Navigate().GoToUrl(publishUrl);
 
-            var title = _driver.FindElementByXPath("//a[text()='"+ newUniqueName +"']").Text;
-            Thread.Sleep(1000);
+            var title = _driver.FindElementByClassName("entry-title").Text;
             Assert.Equal(newUniqueName, title);
 
         }
