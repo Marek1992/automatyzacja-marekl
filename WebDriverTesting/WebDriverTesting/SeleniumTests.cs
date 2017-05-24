@@ -25,9 +25,13 @@ namespace WebDriverTesting
         public void FixMe()
         {
             _driver.Navigate().GoToUrl("https://autotestdotnet.wordpress.com/");
-            IWebElement result = _driver.FindElementByClassName("post-title");
-            var firstNoteTitle = result.FindElement(By.TagName("a")).Text;
+
+            var posts = _driver.FindElementsByClassName("post-title");
+            var secondPost = posts[1];
+            var firstNoteTitle = secondPost.FindElement(By.TagName("a")).Text;
             Assert.Equal("Vivamus aliquam feugiat", firstNoteTitle);
+
+            
         }
         public void Dispose()
         {
