@@ -91,10 +91,66 @@ namespace WebDriverTesting
             Assert.Equal(newUniqueName, title);
 
         }
+        [Fact]
+        public void Zalogowanie_Dodatnie_Notki_I_Sprawdzenie_Czy_Notka_Wyswietla_Sie_Prawidlowo_2()
+        {
+           Administrator.GoTo();
+           Administrator.Login(Credentials.Valid);
+           Administrator.CreateNewPost(ExampleTitle, ExampleContent);
+           Administrator.Logout();
+
+           MainPage.GoTo();
+           MainPage.AssertPostExist(ExampleTitle);
+
+        }
         public void Dispose()
         {
             _driver.Quit();
         }
         private ChromeDriver _driver;
+
+        public object ExampleTitle { get; private set; }
+        public object ExampleContent { get; private set; }
+    }
+
+    internal class Credentials
+    {
+        public static object Valid { get; internal set; }
+    }
+
+    internal class Administrator
+    {
+        internal static void CreateNewPost(object exampleTitle, object exampleContent)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void GoTo()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Login(object valid)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Logout()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    internal class MainPage
+    {
+        internal static void AssertPostExist(object exampleTitle)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void GoTo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
